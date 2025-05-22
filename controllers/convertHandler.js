@@ -22,16 +22,15 @@ function ConvertHandler() {
 
   
   this.getUnit = function(input) {
-  let unitRegex = /[a-zA-Z]+$/;
-  let match = input.match(unitRegex);
-  if (!match) return "invalid unit";
+    const result = input.match(/[a-zA-Z]+$/);
+    if (!result) return 'invalid unit';
 
-  let unit = match[0].toLowerCase();
-  const validUnits = ["gal", "l", "mi", "km", "lbs", "kg"];
+    const unit = result[0].toLowerCase();
+    const validUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg'];
 
-  if (!validUnits.includes(unit)) return "invalid unit";
+    if (!validUnits.includes(unit)) return 'invalid unit';
 
-  return unit === "l" ? "L" : unit;
+    return unit === 'l' ? 'L' : unit;
   };
 
   
