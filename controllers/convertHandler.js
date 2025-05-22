@@ -21,34 +21,36 @@ function ConvertHandler() {
   };
 
   
-  this.getUnit = function(input) {
-    const result = input.match(/[a-zA-Z]+$/);
-    if (!result) return 'invalid unit';
+this.getUnit = function(input) {
+  const result = input.match(/[a-zA-Z]+$/);
+  if (!result) return 'invalid unit';
 
-    const unit = result[0].toLowerCase();
-    const validUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg'];
+  const unit = result[0].toLowerCase();
 
-    if (!validUnits.includes(unit)) return 'invalid unit';
+  const validUnits = ['gal', 'l', 'mi', 'km', 'lbs', 'kg'];
 
-    return unit === 'l' ? 'L' : unit;
-  };
+  if (!validUnits.includes(unit)) return 'invalid unit';
+
+  return unit === 'l' ? 'L' : unit;
+};
 
   
   this.getReturnUnit = function(initUnit) {
-    const map = {
-      gal: "L",
-      L: "gal",
-      mi: "km",
-      km: "mi",
-      lbs: "kg",
-      kg: "lbs"
-    };
-
-    return map[initUnit];
+  const unit = initUnit.toLowerCase() === 'l' ? 'L' : initUnit.toLowerCase();
+  const map = {
+    gal: "L",
+    L: "gal",
+    mi: "km",
+    km: "mi",
+    lbs: "kg",
+    kg: "lbs"
   };
+  return map[unit];
+};
 
 
   this.spellOutUnit = function(unit) {
+  const u = unit.toLowerCase() === 'l' ? 'L' : unit;
   const spellMap = {
     gal: "gallons",
     L: "liters",
@@ -57,9 +59,8 @@ function ConvertHandler() {
     lbs: "pounds",
     kg: "kilograms"
   };
-
-  return spellMap[unit];
-  };
+  return spellMap[u];
+};
 
   
   this.convert = function(initNum, initUnit) {
